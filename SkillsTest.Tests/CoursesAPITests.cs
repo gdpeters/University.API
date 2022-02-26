@@ -1,7 +1,7 @@
-﻿using SkillsTest.Lib;
+﻿using University.API.Services;
 using Xunit;
 
-namespace SkillsTest.Tests
+namespace University.API.Tests
 {
     public class CoursesAPITests
     {

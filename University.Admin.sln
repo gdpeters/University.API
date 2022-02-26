@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University.Admin", "SkillsTest.Lib\University.Admin.csproj", "{1E298B05-2DD4-4CBD-8A41-F655845711B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University.API", "SkillsTest.Lib\University.API.csproj", "{1E298B05-2DD4-4CBD-8A41-F655845711B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University.Admin.Tests", "SkillsTest.Tests\University.Admin.Tests.csproj", "{AE0C2BBD-6AE5-4595-A88E-3EF4D650E31D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University.API.Tests", "SkillsTest.Tests\University.API.Tests.csproj", "{AE0C2BBD-6AE5-4595-A88E-3EF4D650E31D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CBEA31AB-6017-43B6-BAA0-367290B98C13}"
 	ProjectSection(SolutionItems) = preProject

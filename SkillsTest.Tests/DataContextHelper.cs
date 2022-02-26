@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SkillsTest.Lib;
 using System.Linq;
+using University.Admin.DbContexts;
+using University.Admin.Entities;
 
-namespace SkillsTest.Tests
+namespace University.API.Tests
 {
     internal class DataContextHelper
     {
@@ -10,13 +11,13 @@ namespace SkillsTest.Tests
         /// Returns an instance of the In-Memory db context for testing
         /// </summary>
         /// <returns></returns>
-        public static DataContext GetMockDb(string name)
+        public static UniversityContext GetMockDb(string name)
         {
-            var options = new DbContextOptionsBuilder<DataContext>()
+            var options = new DbContextOptionsBuilder<UniversityContext>()
                 .UseInMemoryDatabase(name)
                 .Options;
 
-            var db = new DataContext(options);
+            var db = new UniversityContext(options);
 
             // Seed the database
 

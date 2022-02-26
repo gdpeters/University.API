@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using University.Admin.Entities;
 
-namespace SkillsTest.Lib
+namespace University.Admin.DbContexts
 {
-    public class DataContext : DbContext
+    public class UniversityContext : DbContext
     {
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Course> Courses { get; set; }
 
-        public DataContext(DbContextOptions options) : base(options)
+        public UniversityContext(DbContextOptions options) : base(options)
         {
             // Nothing to do here
         }

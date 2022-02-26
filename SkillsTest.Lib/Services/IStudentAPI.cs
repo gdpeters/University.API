@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using University.Admin.DbContexts;
+using University.Admin.Entities;
 
-namespace SkillsTest.Lib
+namespace University.API.Services
 {
     public interface IStudentAPI
     {
@@ -12,11 +11,13 @@ namespace SkillsTest.Lib
 
     public class DbStudentAPI : IStudentAPI
     {
-        public DataContext Db { get; set; }
+        public UniversityContext Db { get; set; }
 
         public Student GetById(int id)
         {
             return Db.Students.Where(student => student.Id == id).SingleOrDefault();
         }
+
+
     }
 }

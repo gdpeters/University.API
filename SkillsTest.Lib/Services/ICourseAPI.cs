@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using University.Admin.DbContexts;
+using University.Admin.Entities;
 
-namespace SkillsTest.Lib
+namespace University.API.Services
 {
     public interface ICourseAPI
     {
@@ -9,7 +11,7 @@ namespace SkillsTest.Lib
 
     public class DbCourseAPI : ICourseAPI
     {
-        public DataContext Db { get; set; }
+        public UniversityContext Db { get; set; }
 
         public Course GetById(int id)
         {

@@ -12,11 +12,11 @@ namespace University.API.Services
         IEnumerable<Course> GetCourses(int? page, int? pageSize);
     }
 
-    public class DbCourseAPI : ICourseAPI
+    public class CourseAPI : ICourseAPI
     {
 
         private readonly UniversityContext _universityContext;
-        public DbCourseAPI(UniversityContext universityContext)
+        public CourseAPI(UniversityContext universityContext)
         {
             _universityContext = universityContext;
         }
@@ -33,10 +33,12 @@ namespace University.API.Services
 
         public IEnumerable<Course> GetCourses(int? page, int? pageSize)
         {
-            var pg = (page == null) ? 0 : page.Value;
-            var ps = (pageSize == null) ? 10 : pageSize.Value;
+            if (page == null || pageSize == null)
+            {
+                return _universityContext.Courses.OrderBy(course => course.Name).ToList();
+            }
 
-            return _universityContext.Courses.OrderBy(course => course.Name).Skip(pg * ps).Take(ps);
+            return _universityContext.Courses.OrderBy(course => course.Name).Skip(page.Value * pageSize.Value).Take(pageSize.Value).ToList();
         }
     }
 }

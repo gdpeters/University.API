@@ -13,10 +13,10 @@ namespace University.API.Services
         IEnumerable<Student> GetStudentsInCourse(int courseId);
     }
 
-    public class DbStudentAPI : IStudentAPI
+    public class StudentAPI : IStudentAPI
     {
         private readonly UniversityContext _universityContext;
-        public DbStudentAPI(UniversityContext universityContext)
+        public StudentAPI(UniversityContext universityContext)
         {
             _universityContext = universityContext;
         }
@@ -28,24 +28,22 @@ namespace University.API.Services
 
         public IEnumerable<Student> GetStudents(int? page, int? pageSize)
         {
-            var pg = (page == null) ? 0 : page.Value;
-            var ps = (pageSize == null) ? 10 : pageSize.Value;
+            if (page == null || pageSize == null)
+            {
+                return _universityContext.Students.OrderBy(student => student.LastName).ToList();
+            }
 
-            return _universityContext.Students.OrderBy(student => student.LastName).Skip(pg * ps).Take(ps);
-
+            return _universityContext.Students.OrderBy(student => student.LastName).Skip(page.Value * pageSize.Value).Take(pageSize.Value).ToList();
         }
 
         public IEnumerable<Student> GetStudents(string lastName)
         {
-            return _universityContext.Students.Where(student => student.LastName.ToLower().Equals(lastName.ToLower()));
+            return _universityContext.Students.Where(student => student.LastName.ToLower().Equals(lastName.ToLower())).ToList();
         }
 
         public IEnumerable<Student> GetStudentsInCourse(int courseId)
         {
-            return _universityContext.Students.SelectMany(student => student.Courses, (student, course) => new { student, courseId })
-                                           .Where(studentCourseIds => studentCourseIds.courseId == courseId)
-                                           .Select(studentCourse => studentCourse.student)
-                                           .ToList();
+            return _universityContext.Students.Where(student => student.Courses.Any(course => course.Id == courseId)).ToList();
         }
     }
 }

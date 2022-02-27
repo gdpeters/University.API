@@ -50,14 +50,14 @@ namespace University.API.Controllers
         /// Retrieves a specified page of courses in alphabetical order
         /// </summary>
         /// <param name="page">The page to retrieve. The first page is 0 and the default value is 0.</param>
-        /// <param name="pageSize">The number of courses to view on each page. The default value is 10.</param>
+        /// <param name="pageSize">The number of courses to view on each page. The default will return all.</param>
         /// <returns>Courses on a specified page</returns>
         public IActionResult GetCourses(int? page, int? pageSize)
         {
             var courses = _courseAPI.GetCourses(page, pageSize);
 
             if (courses == null)
-                return NotFound();
+                return NotFound(); 
 
             return Ok(courses);
         }

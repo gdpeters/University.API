@@ -34,7 +34,7 @@ namespace University.Admin.Controllers
         /// Retrieve a specified page of students in alphabetical order by last name
         /// </summary>
         /// <param name="page">The page to retrieve. The first page is 0. The default is 0.</param>
-        /// <param name="pageSize">The number of students to view on one page. The default is 10.</param>
+        /// <param name="pageSize">The number of students to view on one page. The default will return all students.</param>
         /// <returns>Students on a specified page</returns>
         public IActionResult GetStudents(int? page, int? pageSize)
         {
@@ -56,7 +56,7 @@ namespace University.Admin.Controllers
         {
             var students = _studentAPI.GetStudents(lastName);
 
-            if (students != null)
+            if (students == null)
                 return NotFound();
 
             return Ok(students);
